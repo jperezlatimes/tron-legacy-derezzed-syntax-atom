@@ -1,0 +1,440 @@
+@import "syntax-variables";
+
+.glow(@color) {
+    color: @color;
+    text-shadow: 0 0 25px @color;
+}
+
+.clear_glow {
+    text-shadow: none;
+}
+
+atom-text-editor, :host {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#132031+0,0c141f+100 */
+    background: rgb(19,32,49); /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover,  rgba(19,32,49,1) 0%, rgba(12,20,31,1) 100%); /* FF3.6-15 */
+    background: -webkit-radial-gradient(center, ellipse cover,  rgba(19,32,49,1) 0%,rgba(12,20,31,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center,  rgba(19,32,49,1) 0%,rgba(12,20,31,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#132031', endColorstr='#0c141f',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    color: fade(@pane, 55%);
+    //////
+  .wrap-guide {
+    background-color: @syntax-wrap-guide-color;
+  }
+    //////
+  .indent-guide {
+    color: @syntax-indent-guide-color;
+  }
+    //////
+  .invisible-character {
+    color: @syntax-invisible-character-color;
+  }
+
+  .gutter {
+    background-color: @black;
+    color: @pane;
+    border-right: 1px solid fade(@pane, 20%);
+    border-left: 1px solid fade(@pane, 20%);
+    .line-number {;
+      &.cursor-line {
+        .glow(@blue);
+        background-color: fade(@pane, 20%);
+      }
+
+      &.cursor-line-no-selection {
+        color: @pane;
+      }
+    }
+  }
+
+  .gutter .line-number.folded,
+  .gutter .line-number:after,
+  .fold-marker:after {
+    color: @pane;
+  }
+//////
+  .invisible {
+    color: @syntax-text-color;
+  }
+
+  .cursor {
+    .glow(@blue);
+  }
+
+  .selection .region {
+    background-color: fade(@blue, 15%);
+  }
+}
+
+atom-text-editor .search-results .marker .region,
+:host .search-results .marker .region {
+  background-color: @orange;
+  border: 1px solid @syntax-result-marker-color;
+}
+
+atom-text-editor .search-results .marker.current-result .region,
+:host .search-results .marker.current-result .region {
+  border: 1px solid @syntax-result-marker-color-selected;
+}
+// test comment
+.comment {
+  color: fade(@pane, 25%);
+}
+
+.keyword {
+  color: @blue;
+
+  &.control {
+    color: @blue;
+  }
+
+  &.operator {
+    .glow(@orange);
+  }
+
+  &.other.special-method {
+    color: @blue;
+  }
+
+  &.other.unit {
+    color: @pane;
+  }
+}
+
+.storage {
+  color: lighten(@yellow, 15%);
+  // .glow(lighten(@yellow, 15%));
+}
+
+.constant {
+  color: fade(@pane, 90%);
+
+  &.character.escape {
+    color: @yellow;
+  }
+
+  &.numeric {
+    color: lighten(@yellow, 30%);
+    // color: @pane;
+  }
+
+  &.other.color {
+    color: lighten(@yellow, 30%);
+  }
+
+  &.other.symbol {
+    color: @green;
+  }
+}
+
+.variable {
+  // color: @red;
+  .glow(@red);
+
+  &.interpolation {
+    color: darken(@red, 10%);
+  }
+
+  &.parameter.function {
+    color: @red;
+  }
+
+  &.scss .string, &.scss .constant {
+      &:extend(.clear_glow);
+  }
+}
+
+.invalid.illegal {
+    position: relative;
+    // background-color: @yellow;
+    box-shadow: 0 0 25px 0 lighten(@blue, 5%);
+    color: @black !important;
+    &:after{
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#33b3dd+0,99cadb+100 */
+        background: rgb(51,179,221); /* Old browsers */
+        background: -moz-linear-gradient(left,  rgba(51,179,221,1) 0%, rgba(153,202,219,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(left,  rgba(51,179,221,1) 0%,rgba(153,202,219,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right,  rgba(51,179,221,1) 0%,rgba(153,202,219,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33b3dd', endColorstr='#99cadb',GradientType=1 ); /* IE6-9 */
+    }
+}
+
+.string {
+  color: fade(@pane, 70%);
+  &.js, &.json {
+      color: @blue;
+  }
+
+  &.regexp {
+    color: @blue;
+
+    .source.ruby.embedded {
+      color: @orange;
+    }
+  }
+
+  &.other.link {
+    color: @red;
+  }
+}
+
+.punctuation {
+  &.definition {
+    &.comment {
+      color: fade(@pane, 25%);
+    }
+    &.arguments.js {
+        color: @pane;
+    }
+
+    &.string,
+    &.variable,
+    &.parameters,
+    &.array {
+        color: @pane;
+    }
+    &.string {
+        color: fade(@pane, 90%);
+    }
+    &.variable {
+        .glow(@red);
+    }
+
+    &.heading,
+    &.identity {
+      color: @blue;
+    }
+
+    &.bold {
+      color: @light-orange;
+      font-weight: bold;
+    }
+
+    &.italic {
+      color: @purple;
+      font-style: italic;
+    }
+  }
+
+  &.section.embedded {
+    color: @orange;
+  }
+
+}
+
+.support {
+  &.class {
+    // color: @orange;
+    .glow(@orange);
+  }
+
+  &.function  {
+    // .glow(lighten(@yellow, 10%));
+    .glow(@pane);
+
+    &.any-method {
+    //   color: @blue;
+    }
+  }
+  &.constant.css {
+      .glow(@pane);
+  }
+}
+
+.entity {
+  &.name.function {
+    color: @blue;
+    &.js {
+        // color: @pane;
+        .glow(@pane);
+    }
+  }
+  &.name.type {
+    color: @light-orange;
+    text-decoration: none;
+  }
+
+  &.other.inherited-class {
+    color: @green;
+  }
+  &.name.class, &.name.type.class {
+    color: @light-orange;
+  }
+
+  &.name.section {
+    color: @blue;
+  }
+
+  &.name.tag {
+      color: @orange;
+      &.html {
+          color: @blue;
+      }
+  }
+
+  &.other.attribute-name {
+    color: @blue;
+
+    &.id {
+      color: @blue;
+    }
+  }
+}
+
+.meta {
+  &.class {
+    color: @light-orange;
+  }
+
+  &.link {
+    color: @orange;
+  }
+
+  &.require {
+    color: @blue;
+  }
+
+  &.selector {
+    color: @purple;
+  }
+
+  &.separator {
+    background-color: @gray;
+    color: @syntax-text-color;
+  }
+}
+
+.none {
+  color: @syntax-text-color;
+}
+
+.markup {
+  &.bold {
+    color: @orange;
+    font-weight: bold;
+  }
+
+  &.changed {
+    color: @purple;
+  }
+
+  &.deleted {
+    color: @red;
+  }
+
+  &.italic {
+    color: @purple;
+    font-style: italic;
+  }
+
+  &.heading .punctuation.definition.heading {
+    color: @blue;
+  }
+
+  &.inserted {
+    color: @green;
+  }
+
+  &.list {
+    color: @red;
+  }
+
+  &.quote {
+    color: @orange;
+  }
+
+  &.raw.inline {
+    color: @green;
+  }
+}
+
+.source.gfm .markup {
+  -webkit-font-smoothing: auto;
+  &.heading {
+    color: @green;
+  }
+}
+
+.function-call.meta {
+    color: @pane;
+    &.php{
+        .glow(@pane);
+    }
+}
+
+atom-text-editor[mini] .scroll-view,
+:host([mini]) .scroll-view {
+  padding-left: 1px;
+}
+
+atom-panel.left {
+    background-color: @black;
+    box-shadow: inset 0 0 15px 5px lighten(@black, 10%);
+    * {
+        background-color: transparent;
+    }
+}
+.tree-view .selected .name {
+    color: @pane;
+}
+.tree-view .selected:before {
+    background-color: darken(@blue, 5%) !important;
+    box-shadow: 0 0 35px 0px darken(@blue, 5%);
+}
+.project-root > .entries > li:not(.expanded), .full-menu > li.collapsed {
+    opacity:0.15;
+    transition:opacity 0.35s ease;
+}
+.project-root > .entries > li.selected, .entry.list-item.selected {
+    opacity:1 !important;
+}
+.tree-view-scroller:hover{
+    .project-root > .entries > li:not(.expanded), .full-menu > li.collapsed {
+        opacity:1;
+    }
+}
+atom-panel.bottom {
+    background-color: @black;
+    border-top: 1px solid fade(@pane, 20%);
+    border-left: 1px solid fade(@pane, 20%);
+}
+
+.header-item.description {
+    color: fade(@pane, 50%);
+}
+.text.plain.null-grammar {
+    .glow(@pane);
+}
+.tab.sortable {
+    background-color: darken(@blue, 70%);
+    .title {
+        background-color: transparent !important;
+    }
+}
+.tab-bar .tab.active[data-type$="Editor"], .tab-bar .tab.active[data-type="MarkdownPreviewView"] {
+    background-color: @black;
+    box-shadow: inset 0 0 25px 0 fade(@blue, 40%);
+    .title {
+        background-color: transparent !important;
+    }
+}
+.tab-bar .tab.modified .close-icon {
+    color: @blue !important;
+}
+.important.css {
+    .glow(@purple);
+}
+.bracket-matcher {
+    text-decoration: none !important;
+    border: 1px solid fade(@blue, 35%) !important;
+    position: absolute;
+    box-shadow: 0 0 25px 0 fade(@blue, 30%), inset 0 0 15px 2px fade(@blue, 30%);
+    // background-color: fade(@blue, 50%);
+}
