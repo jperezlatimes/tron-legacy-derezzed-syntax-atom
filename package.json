@@ -5,7 +5,8 @@
   "description": "A dark syntax theme to play along with tron-legacy-ui",
   "keywords": [
     "syntax",
-    "theme"
+    "theme",
+    "tron"
   ],
   "repository": "https://github.com/lok05philosophy/tron-legacy-syntax-atom.git",
   "license": "MIT",
