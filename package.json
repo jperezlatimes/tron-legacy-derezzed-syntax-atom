@@ -6,7 +6,9 @@
   "keywords": [
     "syntax",
     "theme",
-    "tron"
+    "tron",
+    "dark",
+    "glow"
   ],
   "repository": "https://github.com/lok05philosophy/tron-legacy-syntax-atom.git",
   "license": "MIT",
