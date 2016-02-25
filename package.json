@@ -1,7 +1,7 @@
 {
   "name": "tron-legacy-syntax",
   "theme": "syntax",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "A dark syntax theme to play along with tron-legacy-ui",
   "keywords": [
     "syntax",
