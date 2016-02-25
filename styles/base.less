@@ -339,3 +339,48 @@ atom-text-editor .search-results .marker.current-result .region,
     position: absolute;
     box-shadow: 0 0 25px 0 fade(@blue, 30%), inset 0 0 15px 2px fade(@blue, 30%);
 }
+atom-text-editor, atom-text-editor::shadow {
+    &:extend(.rad_grad);
+    color: fade(@pane, 55%);
+
+    .gutter {
+        background-color: @black;
+        color: @pane;
+        border-right: 1px solid fade(@pane, 40%);
+        // border-left: 1px solid fade(@pane, 20%);
+
+        .line-number {
+            &.cursor-line {
+                .glow(@blue);
+                background-color: fade(@pane, 20%);
+            }
+
+            &.cursor-line-no-selection {
+                color: @pane;
+            }
+        }
+    }
+
+    .gutter .line-number.folded,
+    .gutter .line-number:after,
+    .fold-marker:after {
+        color: @pane;
+    }
+
+    .selection .region {
+        background-color: fade(@blue, 15%);
+    }
+    .cursor {
+        .glow(@blue);
+    }
+
+    .gutter.drop-shadow {
+        // -webkit-box-shadow: -2px 0 10px 2px #222;
+    }
+    .lines {
+        &:extend(.rad_grad);
+        .line {
+            background-color: transparent;
+        }
+    }
+}
