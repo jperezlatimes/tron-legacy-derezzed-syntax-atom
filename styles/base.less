@@ -2,7 +2,7 @@
 
 .glow(@color) {
     color: @color;
-    text-shadow: 0 0 25px @color;
+    text-shadow: 0 0 0px @color;
 }
 
 .clear_glow {
@@ -25,6 +25,12 @@ atom-text-editor, :host {
 //////
   .invisible {
     color: @syntax-text-color;
+  }
+}
+
+atom-text-editor::shadow {
+  .selection .region {
+    background-color: @syntax-selection-color;
   }
 }
 
